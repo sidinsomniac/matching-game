@@ -1,5 +1,6 @@
 const cards = Array.from(document.querySelectorAll('.card'));
 let open = [];
+let count = 0;
 
 shuffle();
 
@@ -14,6 +15,7 @@ cards.forEach(function(card){
 
         if(this.classList.contains('match')){
             this.classList.value = 'card match';
+            count--;
             resetOpen();
         }
 
@@ -32,10 +34,11 @@ cards.forEach(function(card){
                     resetOpen();
                 }
                 else if(open[0] !== open[1]){
-                    setTimeout(resetOpen,1000);
+                    setTimeout(resetOpen,300);
                 }
             }
-        }
+        }        
+        updateCount();
     });
 });
 
@@ -68,6 +71,7 @@ function shuffle() {
         cards[index].classList.value = 'card';
     }
     resetOpen();
+    resetCount();
 }
 
 function resetOpen(){
@@ -75,4 +79,14 @@ function resetOpen(){
         variable.classList.remove('open');
     });
     open = [];
+}
+
+function updateCount(){
+    count++;
+    document.querySelector('.moves').innerHTML = count;
+}
+
+function resetCount(){
+    count = 0;
+    document.querySelector('.moves').innerHTML = count;    
 }
