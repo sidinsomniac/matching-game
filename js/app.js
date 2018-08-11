@@ -2,9 +2,9 @@ const cards = Array.from(document.querySelectorAll('.card'));
 let open = [];
 let count = 0;
 
-shuffle();
+restart();
 
-document.querySelector('.restart').addEventListener('click', shuffle);
+document.querySelector('.restart').addEventListener('click', restart);
 
 
 cards.forEach(function(card){
@@ -39,6 +39,7 @@ cards.forEach(function(card){
             }
         }        
         updateCount();
+        setStars();
     });
 });
 
@@ -54,7 +55,7 @@ cards.forEach(function(card){
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-function shuffle() {
+function restart() {
     var currentIndex = cards.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -70,6 +71,9 @@ function shuffle() {
         document.querySelector('.deck').appendChild(cards[index]);
         cards[index].classList.value = 'card';
     }
+    document.querySelectorAll('.stars li').forEach(function(star){
+        star.style.opacity = '1';
+    });
     resetOpen();
     resetCount();
 }
@@ -89,4 +93,13 @@ function updateCount(){
 function resetCount(){
     count = 0;
     document.querySelector('.moves').innerHTML = count;    
+}
+
+function setStars(){
+    if(count > 25){
+        document.querySelector('.stars').children[2].style.opacity = '0';
+        if(count > 40){
+            document.querySelector('.stars').children[1].style.opacity = '0';
+        }
+    }
 }

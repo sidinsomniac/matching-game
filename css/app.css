@@ -98,6 +98,7 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    color: darkorange;
 }
 
 .score-panel .restart {
