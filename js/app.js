@@ -3,10 +3,14 @@ const deck = document.querySelector('.deck');
 const stars = document.querySelector('.stars');
 const moveCount = document.querySelector('.moves');
 const move = document.querySelector('#move');
+const timer = document.querySelector('.timer');
+let timeKeeper = [0,0,0,0];
 let open = [];
 let count = 0;
 
 restart();
+
+setInterval(runTimer,10);
 
 document.querySelector('.restart').addEventListener('click', restart);
 
@@ -115,4 +119,19 @@ function moveSpell(){
     }else {
         move.innerHTML = 'Moves';
     }
+}
+
+function runTimer(){
+	let currentTime = leadingZero(timeKeeper[0]) + ":" + leadingZero(timeKeeper[1]) + ":" + leadingZero(timeKeeper[2]);
+	timer.innerHTML = currentTime;
+	timeKeeper[3]++;
+	timeKeeper[0] = Math.floor((timeKeeper[3]/100)/60);
+	timeKeeper[1] = Math.floor((timeKeeper[3]/100)-(timeKeeper[0]*60));
+	timeKeeper[2] = Math.floor(timeKeeper[3]-(timeKeeper[1]*100)-(timeKeeper[0]*6000));
+}
+function leadingZero(time){
+	if(time<10){
+		time = "0" + time;
+	}
+	return time;
 }
