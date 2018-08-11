@@ -40,6 +40,7 @@ cards.forEach(function(card){
         }        
         updateCount();
         setStars();
+        moveSpell();
     });
 });
 
@@ -101,5 +102,13 @@ function setStars(){
         if(count > 40){
             document.querySelector('.stars').children[1].style.opacity = '0';
         }
+    }
+}
+
+function moveSpell(){
+    if(count === 1){
+        document.querySelector('#move').innerHTML = 'Move';
+    }else {
+        document.querySelector('#move').innerHTML = 'Moves';
     }
 }
