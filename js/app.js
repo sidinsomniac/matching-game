@@ -8,39 +8,38 @@ document.querySelector('.restart').addEventListener('click', shuffle);
 
 cards.forEach(function(card){
     card.addEventListener('click',function(){
+        this.classList.add('open');
         open.push(this);
         
+
         if(this.classList.contains('match')){
             this.classList.value = 'card match';
             resetOpen();
         }
-        
-        
-        if(open.length <= 2){
-            this.classList.add('open');
-            
+
+        if(open.length > 2){
+            resetOpen();
+        }
+        else{
             if(open.length === 2){
-                
-                if(this.children[0].classList.value === open[0].children[0].classList.value){
-                    console.log('yes');
+                if(this === open[0]){
+                    resetOpen();
+                }
+                else if(this.children[0].classList.value === open[0].children[0].classList.value){
                     open.forEach(function(variable){
                         variable.classList.value = 'card match';
                     });
+                    resetOpen();
                 }
-                else{
-                    setInterval(resetOpen,500);
+                else if(open[0] !== open[1]){
+                    setTimeout(resetOpen,1000);
                 }
             }
-        } 
-
-
-        else if(open.length > 2){
-            resetOpen();
         }
-
-
     });
 });
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -66,6 +65,7 @@ function shuffle() {
     document.querySelector('.deck').innerHTML = '';
     for (let index = 0; index < cards.length; index++) {
         document.querySelector('.deck').appendChild(cards[index]);
+        cards[index].classList.value = 'card';
     }
     resetOpen();
 }
