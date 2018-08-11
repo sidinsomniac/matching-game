@@ -1,4 +1,8 @@
 const cards = Array.from(document.querySelectorAll('.card'));
+const deck = document.querySelector('.deck');
+const stars = document.querySelector('.stars');
+const moveCount = document.querySelector('.moves');
+const move = document.querySelector('#move');
 let open = [];
 let count = 0;
 
@@ -67,9 +71,9 @@ function restart() {
         cards[randomIndex] = temporaryValue;
     }
 
-    document.querySelector('.deck').innerHTML = '';
+    deck.innerHTML = '';
     for (let index = 0; index < cards.length; index++) {
-        document.querySelector('.deck').appendChild(cards[index]);
+        deck.appendChild(cards[index]);
         cards[index].classList.value = 'card';
     }
     document.querySelectorAll('.stars li').forEach(function(star){
@@ -88,27 +92,27 @@ function resetOpen(){
 
 function updateCount(){
     count++;
-    document.querySelector('.moves').innerHTML = count;
+    moveCount.innerHTML = count;
 }
 
 function resetCount(){
     count = 0;
-    document.querySelector('.moves').innerHTML = count;    
+    moveCount.innerHTML = count;    
 }
 
 function setStars(){
     if(count > 25){
-        document.querySelector('.stars').children[2].style.opacity = '0';
+        stars.children[2].style.opacity = '0.6';
         if(count > 40){
-            document.querySelector('.stars').children[1].style.opacity = '0';
+            stars.children[1].style.opacity = '0.6';
         }
     }
 }
 
 function moveSpell(){
     if(count === 1){
-        document.querySelector('#move').innerHTML = 'Move';
+        move.innerHTML = 'Move';
     }else {
-        document.querySelector('#move').innerHTML = 'Moves';
+        move.innerHTML = 'Moves';
     }
 }

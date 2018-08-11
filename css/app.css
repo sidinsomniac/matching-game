@@ -94,14 +94,21 @@ h1 {
 
 .score-panel .stars {
     padding: 0;
-    margin: 0 5px 0 0;
+    margin: 0;
     width: 25%;
+    background-color: cyan ;
+    border-radius: 50px;
 }
 
-.score-panel .stars li {
+.score-panel .stars li {    
     list-style: none;
     display: inline;
-    color: darkorange;
+}
+
+.score-panel .stars li i{    
+    color: gold;
+    padding: 0 10px;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .move {
