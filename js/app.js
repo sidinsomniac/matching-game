@@ -1,15 +1,44 @@
 const cards = Array.from(document.querySelectorAll('.card'));
+let open = [];
 
 shuffle();
 
 document.querySelector('.restart').addEventListener('click', shuffle);
 
-let open = [];
 
 cards.forEach(function(card){
     card.addEventListener('click',function(){
-        this.classList.toggle('open');
         open.push(this);
+        
+        if(this.classList.contains('match')){
+            this.classList.value = 'card match';
+            resetOpen();
+        }
+        
+        
+        if(open.length <= 2){
+            this.classList.add('open');
+            
+            if(open.length === 2){
+                
+                if(this.children[0].classList.value === open[0].children[0].classList.value){
+                    console.log('yes');
+                    open.forEach(function(variable){
+                        variable.classList.value = 'card match';
+                    });
+                }
+                else{
+                    setInterval(resetOpen,500);
+                }
+            }
+        } 
+
+
+        else if(open.length > 2){
+            resetOpen();
+        }
+
+
     });
 });
 /*
@@ -38,4 +67,12 @@ function shuffle() {
     for (let index = 0; index < cards.length; index++) {
         document.querySelector('.deck').appendChild(cards[index]);
     }
+    resetOpen();
+}
+
+function resetOpen(){
+    open.forEach(function(variable){
+        variable.classList.remove('open');
+    });
+    open = [];
 }
