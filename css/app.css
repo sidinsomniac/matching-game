@@ -163,6 +163,6 @@ h1 {
     padding-top: 5px;
 }
 
-#stars-received, #time-taken {
+#stars-received, #time-taken, #moves-count {
     font-weight: bold;
 }

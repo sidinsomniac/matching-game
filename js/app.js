@@ -12,12 +12,13 @@ let count = 0;
 
 restart();
 
-document.querySelector('.restart').addEventListener('click', restart);
+document.querySelectorAll('.restart').forEach(function(button){
+    button.addEventListener('click', restart);
+})
 
 cards.forEach(function(card){
 
     document.querySelector('.deck').addEventListener('click', ifWin);
-
 
     card.addEventListener('click',function(){
 
@@ -94,8 +95,9 @@ function restart() {
     });
     resetOpen();
     resetCount();
-
+    timerReset();
     document.querySelector('.modal').style.cssText = ' opacity: 0; top: -100%';
+    
 }
 
 function resetOpen(){
@@ -158,6 +160,8 @@ function ifWin(){
         document.querySelector('.modal').style.cssText = 'top: 50%; opacity:1';
 
         document.querySelector('#stars-received').innerHTML = numberStars();
+
+        document.querySelector('#moves-count').innerHTML = document.querySelector('.moves').innerHTML;
     }
 }
 
@@ -174,4 +178,11 @@ function numberStars(){
 function returnTime(){
     let timeArray = document.querySelector('.timer').innerHTML.split(':');
     return (timeArray[0]+' minute and '+timeArray[1]+' seconds ');
+}
+
+function timerReset(){
+    timeKeeper = [0,0,0,0];
+    isTimerRunning = false;
+    clearInterval(interval);
+    document.querySelector('.timer').innerHTML = '00:00:00';
 }
