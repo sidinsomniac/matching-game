@@ -5,21 +5,34 @@ const moveCount = document.querySelector('.moves');
 const move = document.querySelector('#move');
 const timer = document.querySelector('.timer');
 let timeKeeper = [0,0,0,0];
+let isTimerRunning = false;
+let interval;
 let open = [];
 let count = 0;
 
 restart();
 
-setInterval(runTimer,10);
-
 document.querySelector('.restart').addEventListener('click', restart);
 
-
 cards.forEach(function(card){
+
+    document.querySelector('.deck').addEventListener('click', function (e) {
+        if(document.querySelectorAll('.match').length === 16 && isTimerRunning === true){
+            clearInterval(interval);
+            isTimerRunning = false;
+        }
+    });
+
+
     card.addEventListener('click',function(){
         this.classList.add('open');
         open.push(this);
-        
+
+        if(open[0] && isTimerRunning === false){
+            isTimerRunning = true;
+            interval = setInterval(runTimer,10);
+        }
+
 
         if(this.classList.contains('match')){
             this.classList.value = 'card match';
@@ -51,6 +64,8 @@ cards.forEach(function(card){
         moveSpell();
     });
 });
+
+
 
 
 /*
