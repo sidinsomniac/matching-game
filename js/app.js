@@ -54,7 +54,7 @@ cards.forEach(function(card){
                     setTimeout(resetOpen,300);
                 }
             }
-        }        
+        }
         updateCount();
         setStars();
         moveSpell();
@@ -94,6 +94,8 @@ function restart() {
     });
     resetOpen();
     resetCount();
+
+    document.querySelector('.modal').style.cssText = ' opacity: 0; top: -100%';
 }
 
 function resetOpen(){
@@ -151,7 +153,7 @@ function ifWin(){
         clearInterval(interval);
         isTimerRunning = false;
         
-        document.querySelector('#time-taken').innerHTML = document.querySelector('.timer').innerHTML;
+        document.querySelector('#time-taken').innerHTML = returnTime();
 
         document.querySelector('.modal').style.cssText = 'top: 50%; opacity:1';
 
@@ -167,4 +169,9 @@ function numberStars(){
         }
     })
     return starCount;
+}
+
+function returnTime(){
+    let timeArray = document.querySelector('.timer').innerHTML.split(':');
+    return (timeArray[0]+' minute and '+timeArray[1]+' seconds ');
 }
