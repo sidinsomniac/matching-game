@@ -93,7 +93,7 @@ h1 {
     text-align: center;
 }
 
-.score-panel .stars {
+.stars {
     padding: 0;
     margin: 0;
     width: 25%;
@@ -101,12 +101,12 @@ h1 {
     border-radius: 50px;
 }
 
-.score-panel .stars li {    
+.stars li {    
     list-style: none;
     display: inline;
 }
 
-.score-panel .stars li i{    
+.stars li i{    
     color: gold;
     padding: 0 10px;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
@@ -116,7 +116,7 @@ h1 {
     width: 25%;
 }
 
-.score-panel .restart {
+.restart {
     width: 25%;
     cursor: pointer;
 }
@@ -126,4 +126,37 @@ h1 {
     font-family: monospace;
     font-weight: bold;
     font-size: 18px;
+}
+
+.modal {
+    background: aqua;
+    border-radius: 8px;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    width: 800px;
+    height: 500px;
+    position: absolute;
+    opacity: 0;
+    top: -200%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: cubic-bezier(0.57, 0.96, 0.76, 1.21) 0.5s top, ease-in 0.5s opacity;
+    z-index: 2;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.modal * {
+    width: 100%;
+    text-align: center;
+}
+
+.play-again {
+    background: #2e3d49;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    width: 200px;
+    height: 80px;
 }

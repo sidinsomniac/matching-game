@@ -25,6 +25,7 @@ cards.forEach(function(card){
 
 
     card.addEventListener('click',function(){
+
         this.classList.add('open');
         open.push(this);
 
@@ -66,6 +67,9 @@ cards.forEach(function(card){
 });
 
 
+document.querySelector('h1').addEventListener('click', function (e) {
+    document.querySelector('.modal').style.cssText = 'top: 50%; opacity:1';
+});
 
 
 /*
