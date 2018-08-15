@@ -16,12 +16,7 @@ document.querySelector('.restart').addEventListener('click', restart);
 
 cards.forEach(function(card){
 
-    document.querySelector('.deck').addEventListener('click', function (e) {
-        if(document.querySelectorAll('.match').length === 16 && isTimerRunning === true){
-            clearInterval(interval);
-            isTimerRunning = false;
-        }
-    });
+    document.querySelector('.deck').addEventListener('click', ifWin);
 
 
     card.addEventListener('click',function(){
@@ -64,11 +59,6 @@ cards.forEach(function(card){
         setStars();
         moveSpell();
     });
-});
-
-
-document.querySelector('h1').addEventListener('click', function (e) {
-    document.querySelector('.modal').style.cssText = 'top: 50%; opacity:1';
 });
 
 
@@ -124,10 +114,10 @@ function resetCount(){
 }
 
 function setStars(){
-    if(count > 25){
-        stars.children[2].style.opacity = '0.6';
+    if(count > 28){
+        stars.children[2].style.opacity = '0';
         if(count > 40){
-            stars.children[1].style.opacity = '0.6';
+            stars.children[1].style.opacity = '0';
         }
     }
 }
@@ -148,9 +138,33 @@ function runTimer(){
 	timeKeeper[1] = Math.floor((timeKeeper[3]/100)-(timeKeeper[0]*60));
 	timeKeeper[2] = Math.floor(timeKeeper[3]-(timeKeeper[1]*100)-(timeKeeper[0]*6000));
 }
+
 function leadingZero(time){
 	if(time<10){
 		time = "0" + time;
 	}
 	return time;
+}
+
+function ifWin(){
+    if(document.querySelectorAll('.match').length === 16 && isTimerRunning === true){
+        clearInterval(interval);
+        isTimerRunning = false;
+        
+        document.querySelector('#time-taken').innerHTML = document.querySelector('.timer').innerHTML;
+
+        document.querySelector('.modal').style.cssText = 'top: 50%; opacity:1';
+
+        document.querySelector('#stars-received').innerHTML = numberStars();
+    }
+}
+
+function numberStars(){
+    let starCount = 0;
+    document.querySelectorAll('.stars li').forEach(function(each){
+        if(each.style.opacity === '1'){
+            starCount++;
+        }
+    })
+    return starCount;
 }
