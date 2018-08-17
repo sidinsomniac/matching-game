@@ -1,20 +1,18 @@
-# Memory Game Project
+# Matching Game
 
-## Table of Contents
+## A JavaScript Memory Matching Game
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+### How to play
 
-## Instructions
+* Clicking on 'Restart' will re-shuffle the game board and wipe out any previous game being played.
+* There are a total of 8 pair of cards in the board. The player clicks on a card to reveal the symbol underneath.
+* Player can only click one card at a time.
+* If the symbol on the second card doesn't match that of the first, both cards will be hidden again.
+* On the other hand, if both cards match, both cards stay open and turn blue.
+* The game ends once all the cards have been matched to their corresponding pair.
+* Click on 'Play Again' to restart the game.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+### Score
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+* The number of moves the player makes is the deciding factor as to how many stars are awarded.
+* The final scorecard would reveal how many stars have been awarded, how many moves it took, and the amount of time it took to finish the game.
