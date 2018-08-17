@@ -14,23 +14,26 @@ restart();
 
 document.querySelectorAll('.restart').forEach(function(button) {
     button.addEventListener('click', restart);
-})
+});
 
 cards.forEach(function(card) {
-
+    // if all cards matchMedia, display modal and statistics
     document.querySelector('.deck').addEventListener('click', ifWin);
 
     card.addEventListener('click', function() {
-
+        // display the card's symbol
         this.classList.add('open');
+
+        // add the cards to a list of open cards
         open.push(this);
 
+        // start timer when first card is clicked
         if (open[0] && isTimerRunning === false) {
             isTimerRunning = true;
             interval = setInterval(runTimer, 10);
         }
 
-
+        // no changes when a matched card is clicked
         if (this.classList.contains('match')) {
             this.classList.value = 'card match';
             count--;
@@ -38,17 +41,21 @@ cards.forEach(function(card) {
         }
 
         if (open.length > 2) {
+            // no more than two cards can be clicked at a time
             resetOpen();
         } else {
             if (open.length === 2) {
                 if (this === open[0]) {
+                    // same card cannot be clicked twice
                     resetOpen();
                 } else if (this.children[0].classList.value === open[0].children[0].classList.value) {
                     open.forEach(function(variable) {
+                        // change card style if two cards match
                         variable.classList.value = 'card match';
                     });
                     resetOpen();
                 } else if (open[0] !== open[1]) {
+                    // remove card pair if they don't match
                     setTimeout(resetOpen, 300);
                 }
             }
@@ -59,20 +66,11 @@ cards.forEach(function(card) {
     });
 });
 
+// FUNCTION DECLARATIONS
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
+// resets the whole board, timer, move counter and stars
 function restart() {
-    var currentIndex = cards.length,
+    let currentIndex = cards.length,
         temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -84,19 +82,24 @@ function restart() {
     }
 
     deck.innerHTML = '';
+
     for (let index = 0; index < cards.length; index++) {
         deck.appendChild(cards[index]);
         cards[index].classList.value = 'card';
     }
+
     document.querySelectorAll('.stars li').forEach(function(star) {
         star.style.opacity = '1';
     });
+
     resetOpen();
     resetCount();
     timerReset();
+
     document.querySelector('.modal').style.cssText = ' opacity: 0; top: -100%';
 }
 
+// resets the list of open cards
 function resetOpen() {
     open.forEach(function(variable) {
         variable.classList.remove('open');
@@ -104,16 +107,19 @@ function resetOpen() {
     open = [];
 }
 
+// updates the move counter
 function updateCount() {
     count++;
     moveCount.innerHTML = count;
 }
 
+// resets the move counter
 function resetCount() {
     count = 0;
     moveCount.innerHTML = count;
 }
 
+// star awarding logic
 function setStars() {
     if (count > 28) {
         stars.children[2].style.opacity = '0';
@@ -123,6 +129,7 @@ function setStars() {
     }
 }
 
+// for correct grammer
 function moveSpell() {
     if (count === 1) {
         move.innerHTML = 'Move';
@@ -131,6 +138,7 @@ function moveSpell() {
     }
 }
 
+// stars running the timer
 function runTimer() {
     let currentTime = leadingZero(timeKeeper[0]) + ":" + leadingZero(timeKeeper[1]) + ":" + leadingZero(timeKeeper[2]);
     timer.innerHTML = currentTime;
@@ -147,6 +155,7 @@ function leadingZero(time) {
     return time;
 }
 
+// if all cards matchMedia, implement this
 function ifWin() {
     if (document.querySelectorAll('.match').length === 16 && isTimerRunning === true) {
         clearInterval(interval);
@@ -162,21 +171,24 @@ function ifWin() {
     }
 }
 
+// to display number of stars after winning
 function numberStars() {
     let starCount = 0;
     document.querySelectorAll('.stars li').forEach(function(each) {
         if (each.style.opacity === '1') {
             starCount++;
         }
-    })
+    });
     return starCount;
 }
 
+// to display time taken after winning
 function returnTime() {
     let timeArray = document.querySelector('.timer').innerHTML.split(':');
     return (timeArray[0] + ' minute and ' + timeArray[1] + ' seconds ');
 }
 
+// to reset the timer
 function timerReset() {
     timeKeeper = [0, 0, 0, 0];
     isTimerRunning = false;
