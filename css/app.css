@@ -71,12 +71,14 @@ h1 {
     cursor: default;
     font-size: 33px;
     transition: font-size 0.2s cubic-bezier(0.51, 0.52, 0.66, 2.25);
+    pointer-events: none;
 }
 
 .deck .card.match {
     cursor: default;
     background: cyan;
     font-size: 33px;
+    pointer-events: none;
 }
 
 /*
@@ -101,12 +103,12 @@ h1 {
     border-radius: 50px;
 }
 
-.stars li {    
+.stars li {
     list-style: none;
     display: inline;
 }
 
-.stars li i{    
+.stars li i{
     color: gold;
     padding: 0 10px;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
@@ -163,6 +165,6 @@ h1 {
     padding-top: 5px;
 }
 
-#stars-received, #time-taken, #moves-count {
+.stars-received, .time-taken, .moves-count {
     font-weight: bold;
 }

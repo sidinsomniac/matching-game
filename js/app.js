@@ -37,7 +37,6 @@ cards.forEach(function(card) {
         if (this.classList.contains('match')) {
             this.classList.value = 'card match';
             open.pop();
-            count--;
         }
 
         if (open.length > 2) {
@@ -47,7 +46,6 @@ cards.forEach(function(card) {
             if (open.length === 2) {
                 if (this === open[0]) {
                     // same card cannot be clicked twice
-                    count--;
                     resetOpen();
                 } else if (this.children[0].classList.value === open[0].children[0].classList.value) {
                     open.forEach(function(variable) {
@@ -141,7 +139,7 @@ function moveSpell() {
 
 // stars running the timer
 function runTimer() {
-    let currentTime = leadingZero(timeKeeper[0]) + ":" + leadingZero(timeKeeper[1]) + ":" + leadingZero(timeKeeper[2]);
+    let currentTime = `${leadingZero(timeKeeper[0])}:${leadingZero(timeKeeper[1])}:${leadingZero(timeKeeper[2])}`;
     timer.innerHTML = currentTime;
     timeKeeper[3]++;
     timeKeeper[0] = Math.floor((timeKeeper[3] / 100) / 60);
@@ -162,13 +160,13 @@ function ifWin() {
         clearInterval(interval);
         isTimerRunning = false;
 
-        document.querySelector('#time-taken').innerHTML = returnTime();
+        document.querySelector('.time-taken').innerHTML = returnTime();
 
         document.querySelector('.modal').style.cssText = 'top: 50%; opacity:1';
 
-        document.querySelector('#stars-received').innerHTML = numberStars();
+        document.querySelector('.stars-received').innerHTML = numberStars();
 
-        document.querySelector('#moves-count').innerHTML = document.querySelector('.moves').innerHTML;
+        document.querySelector('.moves-count').innerHTML = document.querySelector('.moves').innerHTML;
     }
 }
 

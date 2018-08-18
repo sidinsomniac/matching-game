@@ -16,3 +16,15 @@
 
 * The number of moves the player makes is the deciding factor as to how many stars are awarded.
 * The final scorecard would reveal how many stars have been awarded, how many moves it took, and the amount of time it took to finish the game.
+
+### How to download
+
+* Download ZIP file or clone the repository [github.com/sidinsomniac/matching-game](https://github.com/sidinsomniac/matching-game)
+* Click and open `index.html` to open the game in your browser.
+
+#### Dependencies
+- Font Awesome
+- Google Fonts
+
+#### Code acknowledgement
++ The shuffle functionality in the restart function has been added with the help of the following repository [github.com/Daplie/knuth-shuffle](https://github.com/Daplie/knuth-shuffle)
