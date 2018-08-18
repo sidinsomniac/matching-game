@@ -36,8 +36,8 @@ cards.forEach(function(card) {
         // no changes when a matched card is clicked
         if (this.classList.contains('match')) {
             this.classList.value = 'card match';
+            open.pop();
             count--;
-            resetOpen();
         }
 
         if (open.length > 2) {
@@ -47,6 +47,7 @@ cards.forEach(function(card) {
             if (open.length === 2) {
                 if (this === open[0]) {
                     // same card cannot be clicked twice
+                    count--;
                     resetOpen();
                 } else if (this.children[0].classList.value === open[0].children[0].classList.value) {
                     open.forEach(function(variable) {
